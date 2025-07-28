@@ -2,23 +2,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const screens = {
         start: document.getElementById('start-screen'),
         game: document.getElementById('game-screen'),
-        win: document.getElementById('win-screen'),
     };
 
     const modals = {
-        howToPlay: document.getElementById('how-to-play-modal'),
         prompt: document.getElementById('prompt-modal'),
-        vote: document.getElementById('vote-modal'),
     };
 
     const buttons = {
         start: document.getElementById('start-game-btn'),
-        howToPlay: document.getElementById('how-to-play-btn'),
         drawCard: document.getElementById('draw-card-btn'),
         promptOk: document.getElementById('prompt-ok-btn'),
-        voteComplete: document.getElementById('vote-complete-btn'),
-        playAgain: document.getElementById('play-again-btn'),
-        mainMenu: document.getElementById('main-menu-btn'),
     };
 
     const displays = {
@@ -185,9 +178,10 @@ document.addEventListener('DOMContentLoaded', () => {
         "What is a way you've found to bring more spontaneity into your life?"
     ];
 
-    function showScreen(screen) {
-        Object.values(screens).forEach(s => s.classList.remove('active'));
-        screen.classList.add('active');
+    function showScreen(screenId) {
+        for (const screen in screens) {
+            screens[screen].classList.toggle('active', screen === screenId);
+        }
     }
 
     function showModal(modal) {
@@ -200,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     buttons.start.addEventListener('click', () => {
         drawnCards = [];
-        showScreen(screens.game);
+        showScreen('game');
 
         let cardIndex;
         do {
@@ -242,15 +236,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     buttons.promptOk.addEventListener('click', () => {
         hideModal(modals.prompt);
-    });
-
-
-    buttons.playAgain.addEventListener('click', () => {
-        showScreen(screens.start);
-    });
-
-    buttons.mainMenu.addEventListener('click', () => {
-        showScreen(screens.start);
     });
 
     closeButtons.forEach(btn => {
