@@ -2,23 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const screens = {
         start: document.getElementById('start-screen'),
         game: document.getElementById('game-screen'),
-        win: document.getElementById('win-screen'),
     };
 
-    const modals = {
-        howToPlay: document.getElementById('how-to-play-modal'),
-        prompt: document.getElementById('prompt-modal'),
-        vote: document.getElementById('vote-modal'),
-    };
+    const modals = {};
 
     const buttons = {
         start: document.getElementById('start-game-btn'),
-        howToPlay: document.getElementById('how-to-play-btn'),
         drawCard: document.getElementById('draw-card-btn'),
-        promptOk: document.getElementById('prompt-ok-btn'),
-        voteComplete: document.getElementById('vote-complete-btn'),
-        playAgain: document.getElementById('play-again-btn'),
-        mainMenu: document.getElementById('main-menu-btn'),
     };
 
     const displays = {
@@ -31,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let drawnCards = [];
     const cardColors = [
-        '#ffadad', '#ffd6a5', '#fdffb6', '#caffbf', '#9bf6ff', '#a0c4ff', '#bdb2ff', '#ffc6ff'
+        '#fcf4dd', '#ddedea', '#daeaf6', '#f2d8d8'
     ];
 
     const cardDescriptions = [
@@ -185,9 +175,10 @@ document.addEventListener('DOMContentLoaded', () => {
         "What is a way you've found to bring more spontaneity into your life?"
     ];
 
-    function showScreen(screen) {
-        Object.values(screens).forEach(s => s.classList.remove('active'));
-        screen.classList.add('active');
+    function showScreen(screenId) {
+        for (const screen in screens) {
+            screens[screen].classList.toggle('active', screen === screenId);
+        }
     }
 
     function showModal(modal) {
@@ -200,11 +191,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     buttons.start.addEventListener('click', () => {
         drawnCards = [];
-        showScreen(screens.game);
-    });
+        showScreen('game');
 
-    buttons.howToPlay.addEventListener('click', () => {
-        showModal(modals.howToPlay);
+        let cardIndex;
+        do {
+            cardIndex = Math.floor(Math.random() * cardDescriptions.length);
+        } while (drawnCards.includes(cardIndex));
+
+        drawnCards.push(cardIndex);
+
+        const colorIndex = Math.floor(Math.random() * cardColors.length);
+        displays.card.textContent = cardDescriptions[cardIndex];
+        displays.card.style.backgroundColor = cardColors[colorIndex];
     });
 
     buttons.drawCard.addEventListener('click', () => {
@@ -223,28 +221,5 @@ document.addEventListener('DOMContentLoaded', () => {
         const colorIndex = Math.floor(Math.random() * cardColors.length);
         displays.card.textContent = cardDescriptions[cardIndex];
         displays.card.style.backgroundColor = cardColors[colorIndex];
-        document.getElementById('prompt-message').textContent = `Share your story related to this topic. The other person will then share a story from their life to relate to what you've shared.`;
-        showModal(modals.prompt);
-    });
-
-
-
-    buttons.promptOk.addEventListener('click', () => {
-        hideModal(modals.prompt);
-    });
-
-
-    buttons.playAgain.addEventListener('click', () => {
-        showScreen(screens.start);
-    });
-
-    buttons.mainMenu.addEventListener('click', () => {
-        showScreen(screens.start);
-    });
-
-    closeButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            hideModal(e.target.closest('.modal'));
-        });
     });
 });
