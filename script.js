@@ -206,10 +206,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const colorIndex = Math.floor(Math.random() * cardColors.length);
         displays.card.textContent = cardDescriptions[cardIndex];
         displays.card.style.backgroundColor = cardColors[colorIndex];
-    });
-
-    buttons.howToPlay.addEventListener('click', () => {
-        showModal(modals.howToPlay);
+        document.getElementById('prompt-message').textContent = `Share your story related to this topic. The other person will then share a story from their life to relate to what you've shared.`;
+        showModal(modals.prompt);
     });
 
     buttons.drawCard.addEventListener('click', () => {
