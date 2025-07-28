@@ -201,14 +201,14 @@ document.addEventListener('DOMContentLoaded', () => {
     buttons.start.addEventListener('click', () => {
         drawnCards = [];
         showScreen(screens.game);
-        drawNewCard();
+        drawNewCard(false);
     });
 
     buttons.howToPlay.addEventListener('click', () => {
         showModal(modals.howToPlay);
     });
 
-    function drawNewCard() {
+    function drawNewCard(showPrompt = true) {
         if (drawnCards.length === cardDescriptions.length) {
             displays.card.textContent = "All cards have been drawn!";
             return;
@@ -224,11 +224,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const colorIndex = Math.floor(Math.random() * cardColors.length);
         displays.card.textContent = cardDescriptions[cardIndex];
         displays.card.style.backgroundColor = cardColors[colorIndex];
-        document.getElementById('prompt-message').textContent = `Share your story related to this topic. The other person will then share a story from their life to relate to what you've shared.`;
-        showModal(modals.prompt);
+        if (showPrompt) {
+            document.getElementById('prompt-message').textContent = `Share your story related to this topic. The other person will then share a story from their life to relate to what you've shared.`;
+            showModal(modals.prompt);
+        }
     }
 
-    buttons.drawCard.addEventListener('click', drawNewCard);
+    buttons.drawCard.addEventListener('click', () => drawNewCard());
 
 
 
