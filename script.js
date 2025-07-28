@@ -201,13 +201,14 @@ document.addEventListener('DOMContentLoaded', () => {
     buttons.start.addEventListener('click', () => {
         drawnCards = [];
         showScreen(screens.game);
+        drawNewCard();
     });
 
     buttons.howToPlay.addEventListener('click', () => {
         showModal(modals.howToPlay);
     });
 
-    buttons.drawCard.addEventListener('click', () => {
+    function drawNewCard() {
         if (drawnCards.length === cardDescriptions.length) {
             displays.card.textContent = "All cards have been drawn!";
             return;
@@ -225,7 +226,9 @@ document.addEventListener('DOMContentLoaded', () => {
         displays.card.style.backgroundColor = cardColors[colorIndex];
         document.getElementById('prompt-message').textContent = `Share your story related to this topic. The other person will then share a story from their life to relate to what you've shared.`;
         showModal(modals.prompt);
-    });
+    }
+
+    buttons.drawCard.addEventListener('click', drawNewCard);
 
 
 
