@@ -4,14 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
         game: document.getElementById('game-screen'),
     };
 
-    const modals = {
-        prompt: document.getElementById('prompt-modal'),
-    };
+    const modals = {};
 
     const buttons = {
         start: document.getElementById('start-game-btn'),
         drawCard: document.getElementById('draw-card-btn'),
-        promptOk: document.getElementById('prompt-ok-btn'),
     };
 
     const displays = {
@@ -206,8 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const colorIndex = Math.floor(Math.random() * cardColors.length);
         displays.card.textContent = cardDescriptions[cardIndex];
         displays.card.style.backgroundColor = cardColors[colorIndex];
-        document.getElementById('prompt-message').textContent = `Share your story related to this topic. The other person will then share a story from their life to relate to what you've shared.`;
-        showModal(modals.prompt);
     });
 
     buttons.drawCard.addEventListener('click', () => {
@@ -226,17 +221,5 @@ document.addEventListener('DOMContentLoaded', () => {
         const colorIndex = Math.floor(Math.random() * cardColors.length);
         displays.card.textContent = cardDescriptions[cardIndex];
         displays.card.style.backgroundColor = cardColors[colorIndex];
-    });
-
-
-
-    buttons.promptOk.addEventListener('click', () => {
-        hideModal(modals.prompt);
-    });
-
-    closeButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            hideModal(e.target.closest('.modal'));
-        });
     });
 });
