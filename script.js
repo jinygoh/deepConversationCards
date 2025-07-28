@@ -201,14 +201,24 @@ document.addEventListener('DOMContentLoaded', () => {
     buttons.start.addEventListener('click', () => {
         drawnCards = [];
         showScreen(screens.game);
-        drawNewCard(false);
+
+        let cardIndex;
+        do {
+            cardIndex = Math.floor(Math.random() * cardDescriptions.length);
+        } while (drawnCards.includes(cardIndex));
+
+        drawnCards.push(cardIndex);
+
+        const colorIndex = Math.floor(Math.random() * cardColors.length);
+        displays.card.textContent = cardDescriptions[cardIndex];
+        displays.card.style.backgroundColor = cardColors[colorIndex];
     });
 
     buttons.howToPlay.addEventListener('click', () => {
         showModal(modals.howToPlay);
     });
 
-    function drawNewCard(showPrompt = true) {
+    buttons.drawCard.addEventListener('click', () => {
         if (drawnCards.length === cardDescriptions.length) {
             displays.card.textContent = "All cards have been drawn!";
             return;
@@ -224,13 +234,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const colorIndex = Math.floor(Math.random() * cardColors.length);
         displays.card.textContent = cardDescriptions[cardIndex];
         displays.card.style.backgroundColor = cardColors[colorIndex];
-        if (showPrompt) {
-            document.getElementById('prompt-message').textContent = `Share your story related to this topic. The other person will then share a story from their life to relate to what you've shared.`;
-            showModal(modals.prompt);
-        }
-    }
-
-    buttons.drawCard.addEventListener('click', () => drawNewCard());
+        document.getElementById('prompt-message').textContent = `Share your story related to this topic. The other person will then share a story from their life to relate to what you've shared.`;
+        showModal(modals.prompt);
+    });
 
 
 
