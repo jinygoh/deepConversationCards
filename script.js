@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let drawnCards = [];
     const cardColors = [
-        '#ffffff'
+        '#fcf4dd', '#ddedea', '#daeaf6', '#f2d8d8'
     ];
 
     const cardDescriptions = [
