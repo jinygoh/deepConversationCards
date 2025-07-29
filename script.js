@@ -1,29 +1,39 @@
+// Wait for the DOM to be fully loaded before running the script
 document.addEventListener('DOMContentLoaded', () => {
+    // Get references to the different screens in the app
     const screens = {
-        start: document.getElementById('start-screen'),
-        game: document.getElementById('game-screen'),
+        start: document.getElementById('start-screen'), // The start screen
+        game: document.getElementById('game-screen'),   // The game screen
     };
 
+    // An object to hold references to any modals (pop-up windows)
     const modals = {};
 
+    // Get references to the buttons in the app
     const buttons = {
-        start: document.getElementById('start-game-btn'),
-        drawCard: document.getElementById('draw-card-btn'),
+        start: document.getElementById('start-game-btn'), // The "Start Game" button
+        drawCard: document.getElementById('draw-card-btn'), // The "Draw Next Card" button
     };
 
+    // Get references to the display areas in the app
     const displays = {
-        card: document.getElementById('card-display'),
+        card: document.getElementById('card-display'), // The area where the card is displayed
     };
 
+    // An object to hold references to any input fields
     const inputs = {};
 
+    // Get references to all elements with the class "close-btn" (used for closing modals)
     const closeButtons = document.querySelectorAll('.close-btn');
 
+    // An array to keep track of the cards that have been drawn
     let drawnCards = [];
+    // An array of colors to use for the card backgrounds
     const cardColors = [
         '#fcf4dd', '#ddedea', '#daeaf6', '#f2d8d8'
     ];
 
+    // An array of conversation prompts (the card descriptions)
     const cardDescriptions = [
         "What is a dream you've never shared with anyone?",
         "What is one of your biggest fears?",
@@ -175,51 +185,87 @@ document.addEventListener('DOMContentLoaded', () => {
         "What is a way you've found to bring more spontaneity into your life?"
     ];
 
+    /**
+     * Shows a screen and hides all others.
+     * @param {string} screenId The ID of the screen to show.
+     */
     function showScreen(screenId) {
+        // Loop through all the screens
         for (const screen in screens) {
+            // Toggle the 'active' class based on whether the screen ID matches the current screen
             screens[screen].classList.toggle('active', screen === screenId);
         }
     }
 
+    /**
+     * Shows a modal.
+     * @param {HTMLElement} modal The modal element to show.
+     */
     function showModal(modal) {
+        // Set the display style of the modal to 'block' to make it visible
         modal.style.display = 'block';
     }
 
+    /**
+     * Hides a modal.
+     * @param {HTMLElement} modal The modal element to hide.
+     */
     function hideModal(modal) {
+        // Set the display style of the modal to 'none' to hide it
         modal.style.display = 'none';
     }
 
+    // Add an event listener to the "Start Game" button
     buttons.start.addEventListener('click', () => {
+        // Reset the array of drawn cards
         drawnCards = [];
+        // Show the game screen
         showScreen('game');
 
+        // A variable to store the index of the randomly selected card
         let cardIndex;
+        // A loop to ensure that the selected card has not been drawn before
         do {
+            // Select a random card index
             cardIndex = Math.floor(Math.random() * cardDescriptions.length);
-        } while (drawnCards.includes(cardIndex));
+        } while (drawnCards.includes(cardIndex)); // Continue looping as long as the card has already been drawn
 
+        // Add the selected card index to the array of drawn cards
         drawnCards.push(cardIndex);
 
+        // Select a random color index from the cardColors array
         const colorIndex = Math.floor(Math.random() * cardColors.length);
+        // Set the text content of the card display to the selected card description
         displays.card.textContent = cardDescriptions[cardIndex];
+        // Set the background color of the card display to the selected color
         displays.card.style.backgroundColor = cardColors[colorIndex];
     });
 
+    // Add an event listener to the "Draw Next Card" button
     buttons.drawCard.addEventListener('click', () => {
+        // Check if all cards have been drawn
         if (drawnCards.length === cardDescriptions.length) {
+            // If all cards have been drawn, display a message and do nothing else
             displays.card.textContent = "All cards have been drawn!";
             return;
         }
 
+        // A variable to store the index of the randomly selected card
         let cardIndex;
+        // A loop to ensure that the selected card has not been drawn before
         do {
+            // Select a random card index
             cardIndex = Math.floor(Math.random() * cardDescriptions.length);
-        } while (drawnCards.includes(cardIndex));
+        } while (drawnCards.includes(cardIndex)); // Continue looping as long as the card has already been drawn
 
+        // Add the selected card index to the array of drawn cards
         drawnCards.push(cardIndex);
 
+        // Select a random color index from the cardColors array
         const colorIndex = Math.floor(Math.random() * cardColors.length);
+        // Set the text content of the card display to the selected card description
         displays.card.textContent = cardDescriptions[cardIndex];
+        // Set the background color of the card display to the selected color
         displays.card.style.backgroundColor = cardColors[colorIndex];
     });
 });

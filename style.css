@@ -1,136 +1,233 @@
+/* General body styles */
 body {
+    /* Set the font family to Poppins, with a fallback to a generic sans-serif font */
     font-family: 'Poppins', sans-serif;
+    /* Use flexbox to center the content */
     display: flex;
     justify-content: center;
     align-items: center;
+    /* Set the height of the body to the full viewport height */
     height: 100vh;
+    /* Set a fallback background color */
     background-color: #f0f0f0;
+    /* Remove the default margin */
     margin: 0;
+    /* Apply a linear gradient background */
     background: linear-gradient(to right, #e0c3fc, #8ec5fc);
 }
 
+/* General button styles */
 button {
+    /* Set the background color of the button */
     background-color: #f08080;
+    /* Set the text color to white */
     color: #ffffff;
+    /* Add padding to the button */
     padding: 15px 25px;
+    /* Remove the default border */
     border: none;
+    /* Add rounded corners to the button */
     border-radius: 50px;
+    /* Change the cursor to a pointer on hover */
     cursor: pointer;
+    /* Set the font size */
     font-size: 1.1em;
+    /* Set the font weight to bold */
     font-weight: 600;
+    /* Add a box shadow for a 3D effect */
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    /* Add a smooth transition for all properties */
     transition: all 0.3s ease;
 }
 
+/* Button hover effect */
 button:hover {
+    /* Move the button up slightly on hover */
     transform: translateY(-3px);
+    /* Increase the box shadow on hover for a more pronounced effect */
     box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
+/* General screen styles */
 .screen {
+    /* Hide the screens by default */
     display: none;
+    /* Center the text within the screens */
     text-align: center;
 }
 
+/* Active screen styles */
 .screen.active {
+    /* Display the active screen as a flex container */
     display: flex;
+    /* Arrange the content in a column */
     flex-direction: column;
+    /* Center the content horizontally */
     align-items: center;
+    /* Center the content vertically */
     justify-content: center;
 }
 
+/* Modal styles */
 .modal {
+    /* Hide the modal by default */
     display: none;
+    /* Position the modal relative to the viewport */
     position: fixed;
+    /* Ensure the modal is on top of other content */
     z-index: 1;
+    /* Position the modal at the top left corner */
     left: 0;
     top: 0;
+    /* Make the modal cover the entire screen */
     width: 100%;
     height: 100%;
+    /* Enable scrolling if the content overflows */
     overflow: auto;
+    /* Set a semi-transparent background color */
     background-color: rgba(0,0,0,0);
 }
 
+/* Modal content styles */
 .modal-content {
+    /* Set the background color of the modal content */
     background-color: #fefefe;
+    /* Center the modal content horizontally */
     margin: 0 auto;
+    /* Add padding to the modal content */
     padding: 30px;
+    /* Remove the default border */
     border: none;
+    /* Add rounded corners */
     border-radius: 15px;
+    /* Set the width of the modal content */
     width: 90%;
+    /* Set a maximum width for the modal content */
     max-width: 500px;
+    /* Center the text within the modal content */
     text-align: center;
+    /* Position the modal content relative to its container */
     position: relative;
+    /* Add a box shadow for a 3D effect */
     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
 
+/* Close button styles */
 .close-btn {
+    /* Set the color of the close button */
     color: #aaa;
+    /* Float the close button to the right */
     float: right;
+    /* Set the font size */
     font-size: 28px;
+    /* Set the font weight to bold */
     font-weight: bold;
 }
 
+/* Close button hover and focus styles */
 .close-btn:hover,
 .close-btn:focus {
+    /* Change the color of the close button on hover/focus */
     color: black;
+    /* Remove the default text decoration */
     text-decoration: none;
+    /* Change the cursor to a pointer on hover/focus */
     cursor: pointer;
 }
 
+/* Card display styles */
 #card-display {
+    /* Set the width of the card display */
     width: 350px;
+    /* Set the height of the card display */
     height: 220px;
+    /* Set the background color to white */
     background-color: white;
+    /* Add rounded corners */
     border-radius: 20px;
+    /* Add a box shadow for a 3D effect */
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    /* Add margin to the top and bottom */
     margin: 20px auto;
+    /* Add padding to the card display */
     padding: 30px;
+    /* Use flexbox to center the content */
     display: flex;
     justify-content: center;
     align-items: center;
+    /* Set the font size */
     font-size: 1.3em;
+    /* Set the text color */
     color: #333;
 }
 
+/* Score display styles */
 #score-display {
+    /* Add margin to the top */
     margin-top: 20px;
 }
 
+/* Prompt modal content styles */
 #prompt-modal .modal-content {
+    /* Add margin to the top */
     margin-top: 350px;
 }
 
+/* Summary styles */
 .summary {
+    /* Add margin to the top */
     margin-top: 30px;
+    /* Add padding to the left and right */
     padding: 0 20px;
+    /* Set a maximum width for the summary */
     max-width: 600px;
+    /* Center the summary horizontally */
     margin-left: auto;
     margin-right: auto;
+    /* Set the font size */
     font-size: 1.1em;
+    /* Set the text color */
     color: #333;
 }
 
+/* Player count select styles */
 .player-count-select {
+    /* Set the background color */
     background-color: #fca311;
+    /* Set the text color to white */
     color: white;
+    /* Add padding */
     padding: 10px 30px 10px 20px;
+    /* Remove the default border */
     border: none;
+    /* Add rounded corners */
     border-radius: 50px;
+    /* Change the cursor to a pointer on hover */
     cursor: pointer;
+    /* Set the font size */
     font-size: 1.1em;
+    /* Set the font weight to bold */
     font-weight: 600;
+    /* Add a box shadow for a 3D effect */
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    /* Add a smooth transition for all properties */
     transition: all 0.3s ease;
+    /* Remove the default appearance */
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    /* Add a custom dropdown arrow */
     background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    /* Do not repeat the background image */
     background-repeat: no-repeat;
+    /* Position the background image */
     background-position: right 15px center;
 }
 
+/* Player count select hover effect */
 .player-count-select:hover {
+    /* Move the select box up slightly on hover */
     transform: translateY(-3px);
+    /* Increase the box shadow on hover for a more pronounced effect */
     box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
